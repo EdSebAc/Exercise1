@@ -123,6 +123,10 @@ public class Main {
             String tempName = sc.nextLine();
             System.out.printf("Please enter the score for %s: ",tempName);
             double tempScore = sc.nextDouble();
+            while(tempScore > 10 || tempScore < 0){
+                System.out.printf("Please enter a valid score (0-10) for %s: ",tempName);
+                tempScore = sc.nextDouble();
+            }
             sc.nextLine();
             data[i] = new Signature(tempName,tempScore);
         }
