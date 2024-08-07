@@ -1,4 +1,3 @@
-import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.OptionalDouble;
@@ -42,6 +41,7 @@ public class Main {
     }
 
     static void calculator(){
+        interface myInterface { Double run(Double x, Double y); }
         double result = 0;
         System.out.println("Please select an option");
         System.out.println("1.- Sum (a + b)");
@@ -66,20 +66,40 @@ public class Main {
         }
         switch (calcChoice){
             case 1:
-                BiFunction<Double, Double, Double> add = (x, y) -> x+y;
-                result = add.apply(a,b);
+                myInterface sum = new myInterface() {
+                    @Override
+                    public Double run(Double x, Double y) {
+                        return x+y;
+                    }
+                };
+                result = sum.run(a,b);
                 break;
             case 2:
-                BiFunction<Double, Double, Double> minus = (x, y) -> x-y;
-                result = minus.apply(a,b);
+                myInterface minus = new myInterface() {
+                    @Override
+                    public Double run(Double x, Double y) {
+                        return x-y;
+                    }
+                };
+                result = minus.run(a,b);
                 break;
             case 3:
-                BiFunction<Double, Double, Double> multiply = (x, y) -> x*y;
-                result = multiply.apply(a,b);
+                myInterface mult = new myInterface() {
+                    @Override
+                    public Double run(Double x, Double y) {
+                        return x*y;
+                    }
+                };
+                result = mult.run(a,b);
                 break;
             case 4:
-                BiFunction<Double, Double, Double> divide = (x, y) -> x/y;
-                result = divide.apply(a,b);
+                myInterface divide = new myInterface() {
+                    @Override
+                    public Double run(Double x, Double y) {
+                        return x/y;
+                    }
+                };
+                result = divide.run(a,b);
                 break;
         }
         System.out.printf("The result is: %.2f\n",result);
