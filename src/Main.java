@@ -50,6 +50,10 @@ public class Main {
         System.out.println("4.- Divide (a / b)");
         System.out.print("Enter your choice: ");
         int calcChoice = sc.nextInt();
+        while(calcChoice < 1 || calcChoice > 4){
+            System.out.print("Enter a valid choice: ");
+            calcChoice = sc.nextInt();
+        }
         System.out.print("Please enter the value for a: ");
         double a = sc.nextDouble();
         System.out.print("Please enter the value for b: ");
